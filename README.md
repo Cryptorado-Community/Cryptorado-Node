@@ -97,8 +97,10 @@ A Containerized Deploy-able / Install-able Node ([go-ipfs](https://github.com/ip
 
 ### Self-Sovereign User/Profile Management
 
-Via IPNS (see `Why IPFS?` section)
-Via Ethereum based solution like [UPort](https://www.uport.me)
+- IPNS (see `Why IPFS?` section)
+- Ethereum based solution(s):
+  - [UPort](https://www.uport.me)
+  - [3Box](https://3box.io/)
 
 ### Skin-in-the-game mechanisms
 
