@@ -67,56 +67,49 @@ We would also pilot a community decided "paywall" on content hosted by non-persi
 ---
 ### How would it be implemented? :construction_worker_woman: :construction_worker_man: 
 
-There will be two (possibly up to four) methods to run a node, increasing in the level of hardware requirements, commitment to the community, and desired access to features by node hosts:
+Possible contender for the core database: [Orbit DB](https://github.com/orbitdb/orbit-db)
 
-1. A [js-ipfs] in-browser node that will (while the community site is loaded) also host and serve minimal components of the community resources - like the website itself. But this instance will not persist data.
+There will be two (possibly up to four) methods to run a node, increasing in the level of hardware requirements, commitment to the community, and desired access to features by node hosts. 
 
-2. (optional) A Browser Extension node that will  be active so long as you have that browser open and access to the swarm network. This will also persist data and maintain more resources.
+#### In Browser Only
 
-3. (optional) A PWA that can be installed and set to run on any device in the background/ Similar functionality to the extension, but now if your device is up and connected at all, you are active.
-
-4. A Containerized Deploy-able / Install-able Node ([go-ipfs](https://github.com/ipfs/go-ipfs) + docker/podman). This can persist data, and optionally provide more resources for the community - like a community IPFS gateway, and very high uptime/throughput.
-
-In the context of this proposal, we would identify the js or go IPFS node to develop an MVP. In light of the desire to integrate into a website as quickly as possible, js would likely be the one. 
-
-### Shared Data Base:
-
-We will host all shared data via IPFS and use [pubsub](https://github.com/ipfs/go-ipfs/blob/master/core/commands/pubsub.go#L23) and swarm to
-
-### Self-Sovereign User/Profile Management
-
-Via IPNS (TODO FILL OUT IDEA FOR SERVERLESS USER MANAGMENT)
-
-
-## Matrix:
-
-### Chat
-
-## Levels of Nodes
-
-The level of requirements for running a node will start with only a browser permission, then up to a simple browser extention, and finally at a dedicated instalation that runs as long as a hosting device is on. We create incentives based on the reourceses used to host these nodes based on what you are able to access for community applications/plug-ins to the node.  
-
-### In Browser Only
-
-As a minimum, a temporary node can be instantiated in browser only for as long as a user is actively accessing the communities resources via [js-ipfs](https://github.com/ipfs/js-ipfs)
+A [js-ipfs] in-browser node that will (while the community site is loaded) also host and serve minimal components of the community resources - like the website itself. But this instance will not persist data.
 
 This level of support would only afford (optionally) minimal prfiles/accounts on the community resources.
 
-### Browser Extension
+#### Browser Extension (optional)
 
 If a user wants to run something in a more dedicated way - whenever they have a browser open, along with ability to have more personal connection and persistent storage of data via the  community node network. this would also open up more resources dedicated to hosting reources for the community at large.
 
 Browser Extension for IPFS: [ipfs-companion](https://github.com/ipfs-shipyard/ipfs-companion)
 
+#### PWA / Mobile App (optional)
 
-### Mobile App
+A PWA that can be installed and set to run on any device in the background/ Similar functionality to the extension, but now if your device is up and connected at all, you are active.
 
-(OPTIONAL) If we use a framework with PWA ability, we can publish a dedicated app that would be running in the background on devices as long as they are online to help support the network.
+#### Deploy-able / Dedicated Installation
 
-### Deploy-able / Dedicated Installation
+A Containerized Deploy-able / Install-able Node ([go-ipfs](https://github.com/ipfs/go-ipfs) + docker/podman). This can persist data, and optionally provide more resources for the community - like a community IPFS gateway, and very high uptime/throughput.
 
+---
 
 ## Further plug-in Integration:
 
+### Self-Sovereign User/Profile Management
+
+Via IPNS (see `Why IPFS?` section)
+Via Ethereum based solution like [UPort](https://www.uport.me)
+
+### Skin-in-the-game mechanisms
+
+- [Protea](https://www.protea.io/)
+
+### Federated Chat:
+
+- [Matrix](https://matrix.org)
+- [Rocket](https://rocket.chat/)
+- Others?
+
 ### Wiki
-[PeerPad](https://github.com/ipfs-shipyard/peer-pad)
+- [PeerPad](https://github.com/ipfs-shipyard/peer-pad) - as IPFS native document + shared editing
+- [TiddlyWiki](https://tiddlywiki.com/) a unique non-linear notebook for capturing, organising and sharing complex information.
