@@ -1,7 +1,7 @@
 # CORE-Node
 ## Community Resource Node Software Development
 ---
-### Development Group Chat: https://discord.gg/pP8UEdF
+### Development Group Chat: https://keybase.io/team/cryptorado (ask `nukemandan` for the webdev subteam invite)
 ### Overview of Project's Mission: https://decentralizedsummit.com/agenda/dan-shields-ethdenver/
 ---
 ## Goal:
