@@ -1,0 +1,35 @@
+# to run:
+# - navigate to same directory as docker-compose.yml file
+# - `docker-compose up -d`
+#
+# an ipfs_data directory will be created in that same directory
+#
+version: '3'
+services:
+  ipfs:
+    image: ipfs/go-ipfs:v0.4.22
+    network_mode: host
+    volumes:
+      - "./ipfs_data:/data/ipfs"
+    entrypoint: /bin/sh
+    command: 
+      - "-c"
+      - >-
+        if [ ! -f /data/ipfs/config ]; then
+          ipfs init;
+        fi;
+        ipfs daemon --migrate=true --mount=false --enable-namesys-pubsub
+
+  ipfs-cohost:
+    image: mediocregopher/ipfs-cohost
+    network_mode: host
+    entrypoint: /bin/sh
+    command:
+      - "-c"
+      - >-
+        node bin.js add cryptorado.org;
+        while true; do
+          sleep 1m;
+          echo "syncing";
+          node bin.js sync;
+        done
