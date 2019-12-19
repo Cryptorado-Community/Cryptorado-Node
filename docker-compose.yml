@@ -6,30 +6,62 @@
 #
 version: '3'
 services:
+  nebula:
+    image: mediocregopher/nebula
+    volumes:
+      - "./config:/etc/nebula:ro"
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    ports:
+      - "${NEBULA_PORT}:4242/udp"
+    environment:
+      - NEBULA_CONFIG
+    command: ["nebula", "-config", "${NEBULA_CONFIG}"]
+
   ipfs:
     image: ipfs/go-ipfs:v0.4.22
-    network_mode: host
     volumes:
       - "./ipfs_data:/data/ipfs"
-    entrypoint: /bin/sh
-    command: 
-      - "-c"
-      - >-
-        if [ ! -f /data/ipfs/config ]; then
-          ipfs init;
-        fi;
-        ipfs daemon --migrate=true --mount=false --enable-namesys-pubsub
-
-  ipfs-cohost:
-    image: mediocregopher/ipfs-cohost
-    network_mode: host
     entrypoint: /bin/sh
     command:
       - "-c"
       - >-
-        node bin.js add cryptorado.org;
-        while true; do
-          sleep 1m;
-          echo "syncing";
-          node bin.js sync;
-        done
+        /usr/local/bin/start_ipfs daemon
+          --migrate=true --mount=false --enable-namesys-pubsub
+
+  ipfs-cluster:
+    image: ipfs/ipfs-cluster:v0.11.0
+    network_mode: "service:nebula"
+    volumes:
+      - "./ipfs_data/ipfs-cluster:/data/ipfs-cluster"
+      - "./config/ipfs_cluster_service.json:/ipfs_cluster_service.json:ro"
+      - "./config/ipfs_cluster_secret.txt:/ipfs_cluster_secret.txt:ro"
+      - "./peerstore_default.txt:/peerstore_default.txt:ro"
+      - "./ipfs_data/export:/export:ro"
+    entrypoint: /bin/sh
+    command:
+      - "-c"
+      - >-
+        if [ ! -f /data/ipfs-cluster/service.json ]; then
+          echo "cluster configuration not initialized, initializing";
+          ipfs-cluster-service init;
+
+          echo "writing default peerstore file";
+          cp /peerstore_default.txt /data/ipfs-cluster/peerstore;
+        fi;
+
+        echo "installing our service.json (in case it needs updating)";
+        cp /ipfs_cluster_service.json /data/ipfs-cluster/service.json;
+
+        echo "setting secret into service.json";
+        CLUSTER_SECRET=$$(cat /ipfs_cluster_secret.txt);
+        sed -i "s/CLUSTER_SECRET/$$CLUSTER_SECRET/" /data/ipfs-cluster/service.json;
+
+        echo "ensuring /data/ipfs-cluster is writeable by user";
+        chown -R 1000:1000 /data/ipfs-cluster;
+
+        echo "ipfs-cluster is initialized, running";
+        /usr/local/bin/entrypoint.sh -d daemon
+

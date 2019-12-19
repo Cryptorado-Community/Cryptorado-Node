@@ -1,0 +1,7 @@
+# This file tracks all the hosts which have been added to the nebula cluster,
+# and their IPs. This file is modified by util/nebula.sh, it should generally
+# not be modified manually.
+#
+# user hostname ip
+mediocregopher	mediocre-desktop	10.42.0.1/16
+mediocregopher	micro-box	10.42.0.2/16
