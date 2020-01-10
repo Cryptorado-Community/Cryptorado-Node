@@ -34,8 +34,8 @@ case "$1" in
         ;;
 
     "new-host")
-        echo -n "Owner of host: "; read owner
-        echo -n "Name of host: "; read name
+        echo -n "Owner of machine: "; read owner
+        echo -n "Hostname of machine: "; read name
         echo -n "IP of host (must be in the $NEBULA_CIDR range): "; read ip
         if grep -q "$ip" nebula_hosts.txt; then
             echo "!!! The ip $ip is already being used !!!"; exit 1
