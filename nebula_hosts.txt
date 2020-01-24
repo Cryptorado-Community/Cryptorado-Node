@@ -5,3 +5,4 @@
 # user hostname ip
 mediocregopher	mediocre-desktop	10.42.0.1/16
 mediocregopher	micro-box	10.42.0.2/16
+wesmorgan	wesmorgan	10.42.0.3/16
