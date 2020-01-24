@@ -113,8 +113,11 @@ key saved at `config/ca.key`. You can get this file from an existing admin. KEEP
 THIS FILE SECRET.
 
 Once you have the key, adding a new member is fairly easy. Simply run `./cmd.sh
-new-host` and follow the prompts. Once done, the following will have been
-accomplished.
+new-host` and follow the prompts. When choosing an IP address for the new host,
+check the `nebula_hosts.txt` file to make sure there are no conflicts. IP
+addresses are in the form `10.42.x.y`.
+
+Once done, the following will have been accomplished:
 
 * A `.tgz` file will have been created for the new member, which should be given
   to them. DO NOT COMMIT THIS FILE. Once certain they've received the file and
