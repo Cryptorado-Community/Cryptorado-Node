@@ -7,7 +7,7 @@
 version: '3'
 services:
   nebula:
-    image: mediocregopher/nebula
+    image: cryptorado/nebula
     volumes:
       - "./config:/etc/nebula:ro"
     cap_add:
@@ -21,7 +21,7 @@ services:
     command: ["nebula", "-config", "${NEBULA_CONFIG}"]
 
   ipfs:
-    image: ipfs/go-ipfs:v0.4.22
+    image: cryptorado/go-ipfs:v0.4.23
     volumes:
       - "./ipfs_data:/data/ipfs"
     entrypoint: /bin/sh
@@ -32,7 +32,7 @@ services:
           --migrate=true --mount=false --enable-namesys-pubsub
 
   ipfs-cluster:
-    image: ipfs/ipfs-cluster:v0.11.0
+    image: cryptorado/ipfs-cluster:v0.12.1
     network_mode: "service:nebula"
     volumes:
       - "./ipfs_data/ipfs-cluster:/data/ipfs-cluster"
