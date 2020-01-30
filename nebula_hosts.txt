@@ -7,3 +7,4 @@ mediocregopher	mediocre-desktop	10.42.0.1/16
 mediocregopher	micro-box	10.42.0.2/16
 wesmorgan	wesmorgan	10.42.0.3/16
 artlimber	dcg	10.42.0.4/16
+wesmorgan	wes-imac	10.42.0.5/16
