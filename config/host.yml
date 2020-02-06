@@ -18,6 +18,7 @@ pki:
 # Example, if your lighthouse has the nebula IP of 192.168.100.1 and has the real ip address of 100.64.22.11 and runs on port 4242:
 static_host_map:
   "10.42.0.1": ["mediocre-desktop.mediocregopher.com:4243"]
+  "10.42.0.6": ["doc.timetraveltoaster.com:4242"]
 
 
 lighthouse:
@@ -34,6 +35,7 @@ lighthouse:
   # IMPORTANT: THIS SHOULD BE EMPTY ON LIGHTHOUSE NODES
   hosts:
     - "10.42.0.1" # mediocre-desktop
+    - "10.42.0.6" # wesmorgan-lighthouse
 
 # Port Nebula will be listening on. The default here is 4242. For a lighthouse node, the port should be defined,
 # however using port 0 will dynamically assign a port and is recommended for roaming nodes.
