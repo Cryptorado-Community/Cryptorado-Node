@@ -43,10 +43,19 @@ it there:
   tar xzf my-secret-file.tgz .
   ```
 
-4) Start up the node by performing `docker-compose up -d`. Docker must already
+4) If you're running on a Raspberry Pi or similarly low-power system:
+
+  - Edit the `config/ipfs_cluster_service.json` file and change the badger config params `table_loading_mode` and `value_log_loading_mode` from `2` to `0`.
+  - Edit the `docker-compose.yml` file and add this to the `ipfs` section:
+    ```
+    environment:
+      IPFS_PROFILE: lowpower
+    ```
+
+5) Start up the node by performing `docker-compose up -d`. Docker must already
 be started for this to work.
 
-5) Check that you've successfully connected to the cluster and have synced the
+6) Check that you've successfully connected to the cluster and have synced the
 pinset.
 
   `./cmd.sh ls-peers` will list out all peers you've connected to. The top
