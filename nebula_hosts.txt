@@ -9,3 +9,4 @@ wesmorgan	wesmorgan	10.42.0.3/16
 artlimber	dcg	10.42.0.4/16
 wesmorgan	wes-imac	10.42.0.5/16
 wesmorgan	wesmorgan-lighthouse	10.42.0.6/16
+seddd	laptop	10.42.0.7/16
