@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # This is a helper script for performing common nebula operations
 
 set -e
