@@ -7,7 +7,7 @@
 version: '3'
 services:
   nebula:
-    image: cryptorado/nebula
+    image: cryptorado/nebula:v1.1.0
     volumes:
       - "./config:/etc/nebula:ro"
     cap_add:
