@@ -90,7 +90,21 @@ case "$1" in
             ipfs-cluster-ctl add --metadata "dt=$dt" "$inner_path"
         ;;
 
+    "up")
+        docker-compose up -d
+        ;;
+
+    "down")
+        docker-compose down
+        ;;
+
+    "update")
+        git pull
+        docker-compose restart
+        ;;
+
     *)
-        echo "Usage: cmd.sh <new-ca|new-host|ls-peers|ls-pins|pin>"
+        # TODO we should probably use a real command-line parsing framework
+        echo "Usage: cmd.sh <new-ca|new-host|ls-peers|ls-pins|pin|up|down|update>"
         exit 1
 esac

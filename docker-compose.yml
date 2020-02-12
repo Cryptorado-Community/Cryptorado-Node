@@ -1,9 +1,3 @@
-# to run:
-# - navigate to same directory as docker-compose.yml file
-# - `docker-compose up -d`
-#
-# an ipfs_data directory will be created in that same directory
-#
 version: '3'
 services:
   nebula:

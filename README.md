@@ -52,8 +52,8 @@ it there:
       IPFS_PROFILE: lowpower
     ```
 
-5) Start up the node by performing `docker-compose up -d`. Docker must already
-be started for this to work.
+5) Start up the node by performing `./cmd.sh up`. Docker must already be started
+for this to work.
 
 6) Check that you've successfully connected to the cluster and have synced the
 pinset.
@@ -75,17 +75,16 @@ be able to help.
 ## Updating the Node
 
 Occasionally this repo will be updated with configuration changes. In order to
-apply these changes, simply pull down the changes and restart the containers:
+apply these changes, run the `update` command:
 
 ```
-git pull
-docker-compose restart
+./cmd.sh update
 ```
 
 ## Stopping the Node
 
 To stop a running node you can navigate to the Cryptorado-Node directory and
-perform `docker-compose down`. If you'd like to completely reset your node you
+perform `./cmd.sh down`. If you'd like to completely reset your node you
 can then delete the whole directory and start over. Be sure not to lose your
 secret `.tgz` file!
 
@@ -178,17 +177,17 @@ run Cryptorado-Node using the lighthouse config:
 
 ```
 export NEBULA_CONFIG=host.lighthouse.yml
-docker-compose up -d
+./cmd.sh up
 ```
 
 By default nebula uses port 4242, which is the one which must be publicly
-available. In order to use a non-default port, use the NEBULA_PORT environment
+available. In order to use a non-default port, use the `NEBULA_PORT` environment
 variable:
 
 ```
 export NEBULA_CONFIG=host.lighthouse.yml
 export NEBULA_PORT=4040
-docker-compose up -d
+./cmd.sh up
 ```
 
 ### Adding Lighthouses to the Config
