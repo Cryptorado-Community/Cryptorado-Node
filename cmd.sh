@@ -91,6 +91,13 @@ case "$1" in
         ;;
 
     "up")
+        # first compose the env files into the .env file. docker-compose only
+        # reads the .env file when filling template variables in
+        # docker-compose.yml. Luckily it will only honor the last variable to be
+        # defined in the case of duplicates, so we can just append the
+        # user-defined configuration to the default.
+        cp env.default .env
+        if [ -f env ]; then cat env >> .env; fi
         docker-compose up -d
         ;;
 

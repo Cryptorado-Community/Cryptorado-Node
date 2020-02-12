@@ -18,7 +18,15 @@ including opening ports on NATs, in order for this to work.
 
 # Running a Node
 
-## Setup
+## Configuration
+
+Cryptorado-Node aims to work on most systems out-of-the-box, so more than likely
+you don't need to configure anything.
+
+In order to modify the default configuration, create a copy of `env.default`
+called just `env`, and modify any desired parameters in that file.
+
+## Installation
 
 The following steps will guide you from zero to having a fully functioning
 Cryptorado-Node instance.
@@ -51,6 +59,8 @@ it there:
     environment:
       IPFS_PROFILE: lowpower
     ```
+
+    TODO make this configurable in the env file? Or make it the default?
 
 5) Start up the node by performing `./cmd.sh up`. Docker must already be started
 for this to work.
@@ -167,28 +177,13 @@ open port on that IP. They don't store any state or anything like that.
 
 ### Running a Lighthouse
 
-By default Cryptorado-Node will use `config/host.yml` as the nebula
-configuration, but lighthouses need to use `config/host.lighthouse.yml`, which
-is an almost identical config file but with a couple small changes.
+First, follow the steps of the **Configuration** section to create a copy of the
+default configuration.
 
-In order to make your node a lighthouse, set up the node as you normally would
-(by getting a `.tgz` file from an admin and extracting it in your repo), then
-run Cryptorado-Node using the lighthouse config:
+Second, change the value of the `CRYPTORADO_NEBULA_CONFIG` variable (in your new
+configuration) to be `host.lighthouse.yml`.
 
-```
-export NEBULA_CONFIG=host.lighthouse.yml
-./cmd.sh up
-```
-
-By default nebula uses port 4242, which is the one which must be publicly
-available. In order to use a non-default port, use the `NEBULA_PORT` environment
-variable:
-
-```
-export NEBULA_CONFIG=host.lighthouse.yml
-export NEBULA_PORT=4040
-./cmd.sh up
-```
+Set up and run the node using `./cmd.sh up` as you normally would.
 
 ### Adding Lighthouses to the Config
 

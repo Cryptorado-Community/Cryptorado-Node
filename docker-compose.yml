@@ -9,10 +9,8 @@ services:
     devices:
       - /dev/net/tun
     ports:
-      - "${NEBULA_PORT}:4242/udp"
-    environment:
-      - NEBULA_CONFIG
-    command: ["nebula", "-config", "${NEBULA_CONFIG}"]
+      - "${CRYPTORADO_NEBULA_PORT}:4242/udp"
+    command: ["nebula", "-config", "${CRYPTORADO_NEBULA_CONFIG}"]
 
   ipfs:
     image: cryptorado/go-ipfs:v0.4.23
