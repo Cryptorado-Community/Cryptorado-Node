@@ -90,7 +90,28 @@ case "$1" in
             ipfs-cluster-ctl add --metadata "dt=$dt" "$inner_path"
         ;;
 
+    "up")
+        # first compose the env files into the .env file. docker-compose only
+        # reads the .env file when filling template variables in
+        # docker-compose.yml. Luckily it will only honor the last variable to be
+        # defined in the case of duplicates, so we can just append the
+        # user-defined configuration to the default.
+        cp env.default .env
+        if [ -f env ]; then cat env >> .env; fi
+        docker-compose up -d
+        ;;
+
+    "down")
+        docker-compose down
+        ;;
+
+    "update")
+        git pull
+        docker-compose restart
+        ;;
+
     *)
-        echo "Usage: cmd.sh <new-ca|new-host|ls-peers|ls-pins|pin>"
+        # TODO we should probably use a real command-line parsing framework
+        echo "Usage: cmd.sh <new-ca|new-host|ls-peers|ls-pins|pin|up|down|update>"
         exit 1
 esac

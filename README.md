@@ -18,7 +18,15 @@ including opening ports on NATs, in order for this to work.
 
 # Running a Node
 
-## Setup
+## Configuration
+
+Cryptorado-Node aims to work on most systems out-of-the-box, so more than likely
+you don't need to configure anything.
+
+In order to modify the default configuration, create a copy of `env.default`
+called just `env`, and modify any desired parameters in that file.
+
+## Installation
 
 The following steps will guide you from zero to having a fully functioning
 Cryptorado-Node instance.
@@ -52,8 +60,10 @@ it there:
       IPFS_PROFILE: lowpower
     ```
 
-5) Start up the node by performing `docker-compose up -d`. Docker must already
-be started for this to work.
+    TODO make this configurable in the env file? Or make it the default?
+
+5) Start up the node by performing `./cmd.sh up`. Docker must already be started
+for this to work.
 
 6) Check that you've successfully connected to the cluster and have synced the
 pinset.
@@ -75,17 +85,16 @@ be able to help.
 ## Updating the Node
 
 Occasionally this repo will be updated with configuration changes. In order to
-apply these changes, simply pull down the changes and restart the containers:
+apply these changes, run the `update` command:
 
 ```
-git pull
-docker-compose restart
+./cmd.sh update
 ```
 
 ## Stopping the Node
 
 To stop a running node you can navigate to the Cryptorado-Node directory and
-perform `docker-compose down`. If you'd like to completely reset your node you
+perform `./cmd.sh down`. If you'd like to completely reset your node you
 can then delete the whole directory and start over. Be sure not to lose your
 secret `.tgz` file!
 
@@ -168,28 +177,13 @@ open port on that IP. They don't store any state or anything like that.
 
 ### Running a Lighthouse
 
-By default Cryptorado-Node will use `config/host.yml` as the nebula
-configuration, but lighthouses need to use `config/host.lighthouse.yml`, which
-is an almost identical config file but with a couple small changes.
+First, follow the steps of the **Configuration** section to create a copy of the
+default configuration.
 
-In order to make your node a lighthouse, set up the node as you normally would
-(by getting a `.tgz` file from an admin and extracting it in your repo), then
-run Cryptorado-Node using the lighthouse config:
+Second, change the value of the `CRYPTORADO_NEBULA_CONFIG` variable (in your new
+configuration) to be `host.lighthouse.yml`.
 
-```
-export NEBULA_CONFIG=host.lighthouse.yml
-docker-compose up -d
-```
-
-By default nebula uses port 4242, which is the one which must be publicly
-available. In order to use a non-default port, use the NEBULA_PORT environment
-variable:
-
-```
-export NEBULA_CONFIG=host.lighthouse.yml
-export NEBULA_PORT=4040
-docker-compose up -d
-```
+Set up and run the node using `./cmd.sh up` as you normally would.
 
 ### Adding Lighthouses to the Config
 
