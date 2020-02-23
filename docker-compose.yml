@@ -1,6 +1,7 @@
 version: '3'
 services:
   nebula:
+    restart: always
     image: cryptorado/nebula:v1.1.0
     volumes:
       - "./config:/etc/nebula:ro"
@@ -13,6 +14,7 @@ services:
     command: ["nebula", "-config", "${CRYPTORADO_NEBULA_CONFIG}"]
 
   ipfs:
+    restart: always
     image: cryptorado/go-ipfs:v0.4.23
     volumes:
       - "./ipfs_data:/data/ipfs"
@@ -24,6 +26,7 @@ services:
           --migrate=true --mount=false --enable-namesys-pubsub
 
   ipfs-cluster:
+    restart: always
     image: cryptorado/ipfs-cluster:v0.12.1
     network_mode: "service:nebula"
     volumes:
