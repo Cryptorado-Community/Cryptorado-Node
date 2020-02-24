@@ -19,6 +19,8 @@ services:
     volumes:
       - "./ipfs_data:/data/ipfs"
     entrypoint: /bin/sh
+    environment:
+      IPFS_PROFILE: lowpower
     command:
       - "-c"
       - >-
