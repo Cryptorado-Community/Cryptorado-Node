@@ -25,6 +25,16 @@ function nebula_cert {
         mediocregopher/nebula nebula-cert "$@"
 }
 
+function construct_env {
+    # first compose the env files into the .env file. docker-compose only reads
+    # the .env file when filling template variables in docker-compose.yml.
+    # Luckily it will only honor the last variable to be defined in the case of
+    # duplicates, so we can just append the user-defined configuration to the
+    # default.
+    cp env.default .env
+    if [ -f env ]; then cat env >> .env; fi
+}
+
 NEBULA_CIDR=10.42.0.0/16
 
 case "$1" in
@@ -91,23 +101,19 @@ case "$1" in
         ;;
 
     "up")
-        # first compose the env files into the .env file. docker-compose only
-        # reads the .env file when filling template variables in
-        # docker-compose.yml. Luckily it will only honor the last variable to be
-        # defined in the case of duplicates, so we can just append the
-        # user-defined configuration to the default.
-        cp env.default .env
-        if [ -f env ]; then cat env >> .env; fi
+        construct_env
         docker-compose up -d
         ;;
 
     "down")
+        construct_env
         docker-compose down
         ;;
 
     "update")
         git pull
-        docker-compose restart
+        ./cmd.sh down
+        ./cmd.sh up
         ;;
 
     *)
