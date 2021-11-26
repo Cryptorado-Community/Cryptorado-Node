@@ -1,10 +1,18 @@
 # CORE-Node
-## Community Resource Node Software Development
----
-### Development Group Chat: https://keybase.io/team/cryptorado (ask `nukemandan` for the webdev subteam invite)
-### Overview of Project's Mission: https://decentralizedsummit.com/agenda/dan-shields-ethdenver/
----
+
+Community Resource Node Software Development
+
+## Development Group Chat
+
+Main group chat is on Discord:
+
+
+Internal team:
+https://keybase.io/team/cryptorado (ask `nukemandan` for the node subteam invite)
+
+
 ## Goal:
+
 A plug-and-play set of services that anyone can easily install/deploy that connects with a set of peer nodes in a community swarm, all hosting a set of common resources. The node's components will be structured to have a simple common interface to plug-in any application/feature (OPTIONALLY) a community desires, like:
 - A Website
 - A Bulletin Board
@@ -14,7 +22,77 @@ A plug-and-play set of services that anyone can easily install/deploy that conne
 - A Wiki
 - Shared Files
 - ... and more!
----
+
+## Inspiration
+
+A non-exhaustive listing of projects, teams and software that should be used to understand the goals.
+Some examples have some formal account required, and most are a single instance self-hosted by a core team.
+This is not what the Cryptorado Node wants to create, but the types of  services are a fantastic bundle to study.
+Ideally, these should all be **federated** and be able to have some redundancy that is hidden from end users so **all these services are sharded across a network of peer nodes**. 
+
+- - -
+
+### <https://disroot.org/en>
+
+Disroot is a project based in Amsterdam which is maintained by volunteers and depends on the support of its community.
+
+We originally created Disroot out of personal need, we were looking for software we could use to communicate, share and organize within our circles.
+Most of the available solutions were missing the key elements that we find important; Our tools should be open, decentralized, federated and respectful towards freedom and privacy.
+
+While searching for such tools, we found some really interesting projects, projects that we believe should be available to anyone who values similar principles.
+We therefore decided to bundle some applications together and share them with others. This is how Disroot got started.
+
+By running Disroot we hope to change how people typically interact on the web.
+We want to encourage people to break free of the walled gardens of popular software and turn to open and ethical alternatives, may it be on our platform or on another (or you could even host your own).
+
+Together we can form a network that is truly independent, focused on the benefit of the people rather than the exploitation thereof.
+
+#### Services:
+
+- **Email** | (not sure of backend)
+	- Disroot provides secure email accounts for your desktop client or via a web interface. The communication between you and the mail server is encrypted with SSL, providing as much privacy as possible. Furthermore, all the emails being sent out from our server are encrypted as well (TLS) if the recipients email server supports it. This means that emails are no longer sent as traditional "postcard", but are actually put in an "envelope".
+
+- **Cloud** | <https://nextcloud.com/>
+  - Disroot's Cloud service is powered by Nextcloud. It allows you to host and share your files online and have several online functionalities, such as calendar sharing, contacts management, video calls and much more.
+  - Nextcloud offers safe, secure, and compliant sharing solution based on standards compatible with any operating system. 
+  - Most importantly, all your data is stored on our encrypted cloud instance! This means that no one is able to see the content of your files if not explicitly allowed by you. Not even system administrators.
+
+- **Audio** | p2p calls https://www.mumble.info
+  - Disroot's Audio is powered by Mumble. Mumble is a free, open source, low latency, high quality voice chat application. It was originally intended for gamers, but it can be use to organize audio meeting, conference, etc.
+
+- **Forum** | <http://discourse.org>
+  - Disroot's forum is powered by Discourse. Discourse is a fully open-source modern approach to discussion forums. It offers everything your community, group or collective needs to create their communication platform, both public and private. It also gives possibility for individuals to create topics on subjects of their interest and find others to discuss it with, or simply join already existing community.
+
+- **Cryptpad** | <https://cryptpad.fr>
+  - Disroot's Cryptpad is powered by Cryptpad. It provides a totally end-to-end encrypted collaborative office suite. It allows you to create, share and work together on text documents, spreadsheets, presentations, whiteboards or organize your project on a kanban board. All this with zero knowledge where data is encrypted before it leaves your computer.
+
+- **XMPP Chat** | <https://xmpp.org> | implementation: <https://prosody.im>
+  - Communicate using a standardized, open and federated chat protocol, with the ability to encrypt your communication with OMEMO protocol (based on encryption method also used by services such as Signal and Matrix). With XMPP you are not bound to one service provider (e.g. Disroot server) but can freely communicate with contacts from other Jabber servers, just like you would communicate between different email servers.
+
+- **Pads** | <http://etherpad.org> | <https://github.com/ether/etherpad-lite>
+  - Disroot's pads are powered by Etherpad. A pad is an online text that you can collaboratively edit, in real-time, directly in the web browser. Everybody's changes are instantly reflected on all screens.
+  - Write articles, press releases, to-do lists, etc. together with your friends, fellow students or colleagues.
+  - You don't need any account on Disroot to use this service.
+  - You can use Padland on Android to directly open or create your Disroot's pads on your Android device.
+
+- **Bin** | <https://privatebin.info/> | <https://github.com/PrivateBin/PrivateBin>
+  - PrivateBin is a minimalist, open-source online pastebin and discussion board. The data of every pastebin is end to end encrypted/decrypted in the browser so that the server has zero knowledge of hosted data. You don't need any account on Disroot to use this service.
+
+- **Upload** | <https://framagit.org/fiat-tux/hat-softwares/lufi> 
+  - Disroot's Upload service is a file hosting software, powered by Lufi. It temporarily stores files so you can share them with others using a link. To protect privacy, all the files are encrypted in the browser itself - It means that your files never leave your computer unencrypted. The administrators will not be able to see the content of your file, nor will your network administrator or your ISP. The administrators can only see the file's name, its size and its mimetype (what kind of file it is: video, text, etc).
+
+- **Search** | <https://github.com/asciimoo/searx>
+  - Disroot's Search is a search engine like Google, DuckDuckGo, Qwant, powered by Searx. What makes it unique from others is that it is a metasearch engine, aggregating the results of other search engines while not storing information about its users.
+- **Polls** | <https://git.framasoft.org/framasoft/framadate>
+  - Disroot's Polls are powered by Framadate. Framadate is an online service for planning an appointment or making a decision quickly and easily. Create your poll, share it with your friends or colleague so that they can participate in the decision process and get the results! You don't need any account on Disroot to use this service.
+- **Project Board** | <https://taiga.io/> | <https://github.com/taigaio>
+  - Disroot's Project board is a project management tool powered by Taiga, working with agile methodology in mind. It creates a clear, visual overview of the current state of your project to anyone involved. It makes planning very easy and it keeps you and your team focused on tasks. Simply create a project, invite your group members, create tasks and put them on the board. Decide who will take responsibility for the tasks, follow progress, comment, decide and see your project flourish.
+
+- **Calls** | <https://jitsi.org/jitsi-meet/>
+  - Disroot's Calls service is a videoconferencing software, powered by Jitsi-Meet. It provides you high quality video and audio conferences, with as many partners as you want. It also allows to stream your desktop or only some windows to other participants in the call.
+
+- - -
+
 # Key Node Components
 
 CORE will be crafted simultaneously from both the bottom up (in it's decentralized node architecture) and top down (in easy and intuitive UI for devs and users). Key plug-in features that interface with the node network will include:
