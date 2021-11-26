@@ -1,34 +1,31 @@
+<div align="center">
+  
 # Cryptorado Node
 
-This repository contains the docker environment necessary to help co-host the [Cryptorado website](hhtps://cryptorado.org) via IPFS and IPFS-cluster. ([Website source]())
+This repository contains the docker environment necessary to help co-host the [Cryptorado website](hhtps://cryptorado.org) via IPFS and IPFS-cluster.
 
-<div align="center">
-
-|                       |     |                                     |
-| :-------------------: | :-: | :---------------------------------: |
-| **[Goals](GOALS.md)** | \|  | **[Contributing](CONTRIBUTING.md)** |
-|                       |     |                                     |
+**[Homepage](https://cryptorado.org) ([source](https://github.com/cryptorado-Community/cryptorado-html))** | **[Goals](GOALS.md)** | **[Contributing](CONTRIBUTING.md)**
 
 </div>
 
-# Requirements
+## Requirements
 
 Any linux environment with internet access, capable of running docker and docker-compose.
 
 In most cases it is not necessary to perform any network configuration,
 including opening ports on NATs, in order for this to work.
 
-# Running a Node
+## Running a Node
 
-## Configuration
+### Configuration
 
-Cryptorado-Node aims to work on most systems out-of-the-box, so more than likely you don't need to configure anything.
+Cryptorado Node aims to work on most systems out-of-the-box, so more than likely you don't need to configure anything.
 
 In order to modify the default configuration, create a copy of `env.default` called just `env`, and modify any desired parameters in that file.
 
-## Installation
+### Installation
 
-The following steps will guide you from zero to having a fully functioning Cryptorado-Node instance.
+The following steps will guide you from zero to having a fully functioning Cryptorado Node instance.
 
 1. Tell a Cryptorado admin that you would like to be a part of the cluster.
    Find us on [keybase](https://keybase.io/team/cryptorado)!
@@ -42,8 +39,8 @@ The following steps will guide you from zero to having a fully functioning Crypt
 3. Copy the `.tgz` file you were given into the repo's directory, then extract it there:
 
    ```sh
-   cp my-secret-file.tgz Cryptorado-Node
-   cd Cryptorado-Node
+   cp my-secret-file.tgz Cryptorado Node
+   cd Cryptorado Node
    tar xzf my-secret-file.tgz .
    ```
 
@@ -57,12 +54,12 @@ The following steps will guide you from zero to having a fully functioning Crypt
    `./cmd.sh ls-pins` will list out all CIDs in the pinset. There should be at
    least one.
 
-The Cryptorado-Node docker containers will continue running until they are stopped.
+The Cryptorado Node docker containers will continue running until they are stopped.
 If the host is restarted the containers should automatically start themselves on boot (as long as docker is set to start on boot).
 
 If you're having trouble with any of these steps, ask us in the [keybase team](https://keybase.io/team/cryptorado) and someone will be able to help.
 
-## Updating the Node
+### Updating the Node
 
 Occasionally this repo will be updated with configuration changes.
 In order to apply these changes, run the `update` command:
@@ -71,14 +68,14 @@ In order to apply these changes, run the `update` command:
 ./cmd.sh update
 ```
 
-## Stopping the Node
+### Stopping the Node
 
-To stop a running node you can navigate to the Cryptorado-Node directory and
+To stop a running node you can navigate to the Cryptorado Node directory and
 perform `./cmd.sh down`. If you'd like to completely reset your node you
 can then delete the whole directory and start over. Be sure not to lose your
 secret `.tgz` file!
 
-# How Does It Work?
+## How Does It Work?
 
 There are three components being run in the docker environment:
 
@@ -97,12 +94,12 @@ There are three components being run in the docker environment:
 If you have specific questions on how this project works, feel free to ask
 in the `#distributed-web` channel in the [keybase team](https://keybase.io/team/cryptorado).
 
-# Admin
+## Admin
 
 This section is meant for admins who will be adding new members to the cluster,
 pinning new content, or otherwise doing more than simply joining the cluster.
 
-## Adding New Members
+### Adding New Members
 
 In order to add new members to the cluster you must have the nebula root cert
 key saved at `config/ca.key`. You can get this file from an existing admin. KEEP
@@ -124,24 +121,24 @@ Once done, the following will have been accomplished:
   new member. The change to this file _should_ be committed and pushed, as it
   allows us to track what IPs have been assigned to which machines.
 
-## Pinning Files
+### Pinning Files
 
-### The Easy Way
+#### The Easy Way
 
 ```sh
 ./cmd.sh pin path/to/some/file/or/directory
 ```
 
-### The Hard Way
+#### The Hard Way
 
-Once the Cryptorado-Node is running, it mounts the directory at `./ipfs_data/export` into the `ipfs-cluster` container at `/export`. So in order to pin some content it must be copied into that directory.
+Once the Cryptorado Node is running, it mounts the directory at `./ipfs_data/export` into the `ipfs-cluster` container at `/export`. So in order to pin some content it must be copied into that directory.
 Once done:
 
 ```sh
 docker-compose exec ipfs-cluster ipfs-cluster-ctl add /export/your_content
 ```
 
-## [Nebula Lighthouses](https://www.defined.net/nebula/quick-start/)
+### [Nebula Lighthouses](https://www.defined.net/nebula/quick-start/)
 
 Generally nebula does not require the cluster hosts to be "public" (i.e. not behind a NAT).
 The exception is that there must be a subset of hosts, called lighthost hosts, which _are_ public and which let cluster members discover their own and other members' ips.
@@ -149,7 +146,7 @@ The exception is that there must be a subset of hosts, called lighthost hosts, w
 Lighthouses have no special requirements except that they have a dedicated IP address or DNS entry which always resolves to them, and are able to expose an open port on that IP.
 They don't store any state or anything like that.
 
-### Running a Lighthouse
+#### Running a Lighthouse
 
 First, follow the steps of the **Configuration** section to create a copy of the default configuration.
 
@@ -157,7 +154,7 @@ Second, change the value of the `CRYPTORADO_NEBULA_CONFIG` variable (in your new
 
 Set up and run the node using `./cmd.sh up` as you normally would.
 
-### Adding Lighthouses to the Config
+#### Adding Lighthouses to the Config
 
 Once a lighthouse is up and running, several changes need to be made in order for other hosts to use it:
 
